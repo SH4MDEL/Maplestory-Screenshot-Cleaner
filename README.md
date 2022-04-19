@@ -1,0 +1,2 @@
+# Maplestory-Screenshot-Cleaner
+ 
