@@ -9,10 +9,10 @@ def Cleaner(dir):
         os.makedirs(dir+'\ScreenshotCleaner_ects')
     
     for fn in os.listdir(dir):
-        if fn.startswith('Maple_A_') and fn.endswith('.png'):
-            if isLevelup(dir+'\\'+fn, dir+'\ScreenshotCleaner_ects'+'\\'+fn):
+        if fn.startswith('Maple_A_') and (fn.endswith('.png') or fn.endswith('.jpg')):
+            if isLevelup(dir+'\\'+fn):
                 shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner_LevelUp'+'\\'+fn)
             else:
                 shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner_ects'+'\\'+fn)
-        elif fn.startswith('Maple_') and fn.endswith('.png'):
+        elif fn.startswith('Maple_') and (fn.endswith('.png') or fn.endswith('.jpg')):
             shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner_ects'+'\\'+fn)
