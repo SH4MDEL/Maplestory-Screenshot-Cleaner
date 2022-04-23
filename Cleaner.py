@@ -1,5 +1,6 @@
 import os
 import shutil
+from isLevelup import isLevelup
 
 def Cleaner(dir):
     if not os.path.isdir(dir+'\ScreenshotCleaner_LevelUp'):
@@ -9,6 +10,9 @@ def Cleaner(dir):
     
     for fn in os.listdir(dir):
         if fn.startswith('Maple_A_') and fn.endswith('.png'):
-            pass
+            if isLevelup(dir+'\\'+fn, dir+'\ScreenshotCleaner_ects'+'\\'+fn):
+                shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner_LevelUp'+'\\'+fn)
+            else:
+                shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner_ects'+'\\'+fn)
         elif fn.startswith('Maple_') and fn.endswith('.png'):
             shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner_ects'+'\\'+fn)
