@@ -3,6 +3,13 @@ import shutil
 from isLevelup import isLevelup
 
 def Cleaner(dir):
+    if not os.path.isdir(dir+'\ScreenshotCleaner'):
+        os.makedirs(dir+'\ScreenshotCleaner')
+    
+    for fn in os.listdir(dir):
+        shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner'+'\\'+fn)
+
+def LevelupCleaner(dir):
     if not os.path.isdir(dir+'\ScreenshotCleaner_LevelUp'):
         os.makedirs(dir+'\ScreenshotCleaner_LevelUp')
     if not os.path.isdir(dir+'\ScreenshotCleaner_ects'):

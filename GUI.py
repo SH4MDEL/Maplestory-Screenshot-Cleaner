@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.ttk import *
 from tkinter import filedialog
-from Cleaner import Cleaner
+from Cleaner import Cleaner, LevelupCleaner
 
 def RunGraphicUserInterface():
     def Tk_Quit(event=None):
@@ -30,10 +30,22 @@ def RunGraphicUserInterface():
     ButtonSelectDir.pack(side=LEFT)
 
     def RunCleaner():
-        Cleaner(EntryAddressBar.get())
+        if CheckbuttonLevelupCheck.get() == 0:
+            Cleaner(EntryAddressBar.get())
+        else:
+            LevelupCleaner(EntryAddressBar.get())
 
     ButtonRunCleaner = Button(LabelFrameAddressBar, command=RunCleaner, text='Run Cleaner')
-    ButtonRunCleaner.pack(side=RIGHT)
+    ButtonRunCleaner.pack(side=LEFT)
+
+
+    # OptionBar
+    LabelFrameOptionBar = LabelFrame(text='Option')
+    LabelFrameOptionBar.pack(fill=BOTH)
+
+    CheckbuttonLevelupCheck = IntVar()
+    CheckbuttonLevelupOption = Checkbutton(LabelFrameOptionBar, text='Levelup Check', variable=CheckbuttonLevelupCheck)
+    CheckbuttonLevelupOption.pack(fill=BOTH)
 
     TkWindow.mainloop()
 
