@@ -7,7 +7,8 @@ def Cleaner(dir):
         os.makedirs(dir+'\ScreenshotCleaner')
     
     for fn in os.listdir(dir):
-        shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner'+'\\'+fn)
+        if fn.startswith('Maple_') and (fn.endswith('.png') or fn.endswith('.jpg')):
+            shutil.move(dir+'\\'+fn, dir+'\ScreenshotCleaner'+'\\'+fn)
 
 def LevelupCleaner(dir):
     if not os.path.isdir(dir+'\ScreenshotCleaner_LevelUp'):
