@@ -1,7 +1,10 @@
 from tkinter import *
+from tkinter import messagebox
 from tkinter.ttk import *
 from tkinter import filedialog
 from Cleaner import Cleaner, LevelupCleaner
+from makeZip import makeZip
+import os
 
 def RunGraphicUserInterface():
     def Tk_Quit(event=None):
@@ -30,10 +33,16 @@ def RunGraphicUserInterface():
     ButtonSelectDir.pack(side=LEFT)
 
     def RunCleaner():
-        if CheckbuttonLevelupCheck.get() == 0:
+        if not os.path.isdir(EntryAddressBar.get()):
+            messagebox.showinfo('info', '잘못된 경로')
+            return
+        if not CheckbuttonLevelupCheck.get():
             Cleaner(EntryAddressBar.get())
         else:
             LevelupCleaner(EntryAddressBar.get())
+
+        if CheckbuttonLZipCheck.get():
+            makeZip(EntryAddressBar.get())
 
     ButtonRunCleaner = Button(LabelFrameAddressBar, command=RunCleaner, text='Run Cleaner')
     ButtonRunCleaner.pack(side=LEFT)
@@ -46,6 +55,10 @@ def RunGraphicUserInterface():
     CheckbuttonLevelupCheck = IntVar()
     CheckbuttonLevelupOption = Checkbutton(LabelFrameOptionBar, text='Levelup Check', variable=CheckbuttonLevelupCheck)
     CheckbuttonLevelupOption.pack(fill=BOTH)
+
+    CheckbuttonLZipCheck = IntVar()
+    CheckbuttonZipOption = Checkbutton(LabelFrameOptionBar, text='Add Zip File', variable=CheckbuttonLZipCheck)
+    CheckbuttonZipOption.pack(fill=BOTH)
 
     TkWindow.mainloop()
 
