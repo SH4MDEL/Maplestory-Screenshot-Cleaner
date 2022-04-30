@@ -42,7 +42,8 @@ def RunGraphicUserInterface():
             LevelupCleaner(EntryAddressBar.get())
 
         if CheckbuttonLZipCheck.get():
-            makeZip(EntryAddressBar.get())
+            if not makeZip(EntryAddressBar.get()):
+                messagebox.showinfo('info', '이미 압축 파일이 존재합니다.')
 
     ButtonRunCleaner = Button(LabelFrameAddressBar, command=RunCleaner, text='Run Cleaner')
     ButtonRunCleaner.pack(side=LEFT)
